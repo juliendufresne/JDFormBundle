@@ -2,6 +2,7 @@
 
 namespace JD\FormBundle\DependencyInjection;
 
+use JD\FormBundle\Form\Type\DateBetweenType;
 use JD\FormBundle\Form\Type\DateType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -45,7 +46,7 @@ final class JDFormExtension extends ConfigurableExtension
 
         foreach ($this->getLoaders($config) as $configName => $options) {
             if (true === $config[$configName]['enabled']) {
-                $this->loadFormType($container, $options['arguments'], $options['alias']);
+                $this->loadFormType($container, $options['class'], $options['arguments'], $options['alias']);
             }
         }
     }
@@ -58,26 +59,34 @@ final class JDFormExtension extends ConfigurableExtension
     private function getLoaders(array $config)
     {
         return [
-            'date' => [
+            'date'         => [
+                'class'     => DateType::class,
                 'arguments' => [
                     $config['date']['widget'],
                     $config['date']['format'],
                 ],
-                'alias' => 'jd_date',
+                'alias'     => 'jd_date',
             ],
             'date_between' => [
+                'class'     => DateBetweenType::class,
                 'arguments' => [
                     $config['date_between']['from'],
                     $config['date_between']['to'],
                 ],
-                'alias' => 'date_between',
+                'alias'     => 'date_between',
             ],
         ];
     }
 
-    private function loadFormType(ContainerBuilder $container, $arguments, $tagAlias)
+    /**
+     * @param ContainerBuilder $container
+     * @param string           $class
+     * @param string[]         $arguments
+     * @param string           $tagAlias
+     */
+    private function loadFormType(ContainerBuilder $container, $class, array $arguments, $tagAlias)
     {
-        $typeDef = new Definition(DateType::class);
+        $typeDef = new Definition($class);
         $typeDef
             ->setArguments($arguments)
             ->addTag('form.type', ['alias' => $tagAlias]);
