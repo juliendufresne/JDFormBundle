@@ -33,7 +33,7 @@ final class ArrayToStringTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testTransform()
     {
-        $result = $this->transformer->transform(range(1,3));
+        $result = $this->transformer->transform(range(1, 3));
 
         $this->assertEquals('1|2|3', $result);
     }
@@ -57,7 +57,7 @@ final class ArrayToStringTransformerTest extends PHPUnit_Framework_TestCase
     {
         $result = $this->transformer->reverseTransform('1|2|3');
 
-        $this->assertEquals(range(1,3), $result);
+        $this->assertEquals(range(1, 3), $result);
     }
 
     public function testReverseTransformNull()
@@ -69,7 +69,7 @@ final class ArrayToStringTransformerTest extends PHPUnit_Framework_TestCase
 
     public function testReverseTransformEmpty()
     {
-        $result = $this->transformer->reverseTransform("");
+        $result = $this->transformer->reverseTransform('');
 
         $this->assertEmpty($result);
     }

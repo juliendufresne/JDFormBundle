@@ -30,7 +30,6 @@ final class DateType extends AbstractType
         $this->widget = $widget;
     }
 
-
     /**
      * @param OptionsResolver $resolver
      */

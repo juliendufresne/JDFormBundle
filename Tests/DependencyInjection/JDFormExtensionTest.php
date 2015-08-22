@@ -15,7 +15,7 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
     private static $servicesShortName = [
         'array_hidden' => 'jd_form.form_type.array_hidden',
         'array_text'   => 'jd_form.form_type.array_text',
-        'date'         => 'jd_form.form_type.date',
+        'date'         => 'jd_form.form_type.jd_date',
         'date_between' => 'jd_form.form_type.date_between',
     ];
 
@@ -58,7 +58,7 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
     {
         // setup
         $config                         = [];
-        $config['form']['enabled'] = false;
+        $config['form']['enabled']      = false;
 
         // call method under test
         $this->extension->load([$config], $this->container);
@@ -73,7 +73,7 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
     {
         // setup
         $config                                       = [];
-        $config['form']['array']['enabled'] = false;
+        $config['form']['array']['enabled']           = false;
 
         // call method under test
         $this->extension->load([$config], $this->container);
@@ -103,7 +103,7 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
     {
         // setup
         $config                                      = [];
-        $config['form']['date']['enabled'] = false;
+        $config['form']['date']['enabled']           = false;
 
         // call method under test
         $this->extension->load([$config], $this->container);
@@ -118,9 +118,9 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
         $config = [
             'form' => [
                 'date' => [
-                    'widget' => 'choice'
-                ]
-            ]
+                    'widget' => 'choice',
+                ],
+            ],
         ];
 
         // call method under test
@@ -150,7 +150,7 @@ final class JDFormExtensionTest extends PHPUnit_Framework_TestCase
     {
         // setup
         $config                                              = [];
-        $config['form']['date_between']['enabled'] = false;
+        $config['form']['date_between']['enabled']           = false;
 
         // call method under test
         $this->extension->load([$config], $this->container);

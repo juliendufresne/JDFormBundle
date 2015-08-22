@@ -28,7 +28,7 @@ final class ArrayType extends AbstractType
     public function __construct($parentType, $defaultDelimiter = ', ')
     {
         $this->defaultDelimiter = $defaultDelimiter;
-        $this->parentType = $parentType;
+        $this->parentType       = $parentType;
     }
 
     /**

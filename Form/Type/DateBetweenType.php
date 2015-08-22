@@ -25,8 +25,6 @@ final class DateBetweenType extends AbstractType
     /**
      * @param string $fromType
      * @param string $toType
-     * @param array  $fromOptions
-     * @param array  $toOptions
      */
     public function __construct($fromType = 'jd_date', $toType = 'jd_date')
     {

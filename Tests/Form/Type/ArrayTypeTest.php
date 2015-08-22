@@ -41,7 +41,7 @@ final class ArrayTypeTest extends TypeTestCase
                 $dataProvider[] = [
                     'type'      => $type,
                     'delimiter' => $delimiter,
-                    'formData'  => "",
+                    'formData'  => '',
                 ];
                 $dataProvider[] = [
                     'type'      => $type,

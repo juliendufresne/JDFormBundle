@@ -22,8 +22,7 @@ final class Configuration implements ConfigurationInterface
         $rootNode    = $treeBuilder
             ->root('jd_form')
             ->addDefaultsIfNotSet()
-            ->canBeDisabled()
-        ;
+            ->canBeDisabled();
 
         $this->addFormTypeSection($rootNode);
 

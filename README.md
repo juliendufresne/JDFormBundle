@@ -44,13 +44,15 @@ class AppKernel extends Kernel
 
 ## Project Status
 
+[![Latest Stable Version](https://poser.pugx.org/juliendufresne/form-bundle/version)](https://packagist.org/packages/juliendufresne/form-bundle) [![Latest Unstable Version](https://poser.pugx.org/juliendufresne/form-bundle/v/unstable)](//packagist.org/packages/juliendufresne/form-bundle) [![Total Downloads](https://poser.pugx.org/juliendufresne/form-bundle/downloads)](https://packagist.org/packages/juliendufresne/form-bundle)
+
 | Project Version     | Build                                   | Code coverage                                  | Code Quality                                  |
 |:-------------------:|:---------------------------------------:|:----------------------------------------------:|:---------------------------------------------:|
 | [Master][100]       | [![Travis][110]][111]                   | [![coveralls][120]][121]                       | [![scrutinizer][130]][131] [![Insight][1]][2] |
 
 
-[1]: https://insight.sensiolabs.com/projects/<project-hash>/mini.png
-[2]: https://insight.sensiolabs.com/projects/<project-hash>
+[1]: https://insight.sensiolabs.com/projects/194bd583-92a2-499a-add9-c6b3717fc4d2/mini.png
+[2]: https://insight.sensiolabs.com/projects/194bd583-92a2-499a-add9-c6b3717fc4d2
 
 [100]: https://github.com/juliendufresne/form-bundle
 [110]: https://travis-ci.org/juliendufresne/form-bundle.svg?branch=master

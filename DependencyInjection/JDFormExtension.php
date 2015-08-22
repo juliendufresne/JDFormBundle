@@ -2,7 +2,6 @@
 
 namespace JD\FormBundle\DependencyInjection;
 
-use JD\FormBundle\Form\Type\DateBetweenType;
 use JD\FormBundle\Form\Type\DateType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -40,23 +39,48 @@ final class JDFormExtension extends ConfigurableExtension
      */
     private function loadFormTypes(array $config, ContainerBuilder $container)
     {
+        if (true === $config['array']['enabled']) {
+            $this->loadArrayFormType($container, $config['array']);
+        }
+
         $callIfEnabled = [
-            'array'        => 'loadArrayFormType',
-            'date'         => 'loadDateFormType',
-            'date_between' => 'loadDateBetweenFormType',
+            'date' => [
+                'arguments' => [
+                    $config['date']['widget'],
+                    $config['date']['format'],
+                ],
+                'alias' => 'jd_date',
+            ],
+            'date_between' => [
+                'arguments' => [
+                    $config['date_between']['from'],
+                    $config['date_between']['to'],
+                ],
+                'alias' => 'date_between',
+            ],
         ];
-        foreach ($callIfEnabled as $configName => $methodName) {
+
+        foreach ($callIfEnabled as $configName => $options) {
             if (true === $config[$configName]['enabled']) {
-                call_user_func([$this, $methodName], $config[$configName], $container);
+                $this->loadFormType($container, $options['arguments'], $options['alias']);
             }
         }
+    }
+
+    private function loadFormType(ContainerBuilder $container, $arguments, $tagAlias)
+    {
+        $typeDef = new Definition(DateType::class);
+        $typeDef
+            ->setArguments($arguments)
+            ->addTag('form.type', ['alias' => $tagAlias]);
+        $container->setDefinition('jd_form.form_type.'.$tagAlias, $typeDef);
     }
 
     /**
      * @param array            $config
      * @param ContainerBuilder $container
      */
-    private function loadArrayFormType(array $config, ContainerBuilder $container)
+    private function loadArrayFormType(ContainerBuilder $container, array $config)
     {
         $serviceId = 'jd_form.form_type.array';
         $types     = ['hidden', 'text'];
@@ -67,31 +91,5 @@ final class JDFormExtension extends ConfigurableExtension
                 ->addTag('form.type', ['alias' => 'array_'.$type]);
             $container->setDefinition($serviceId.'_'.$type, $typeDef);
         }
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    private function loadDateFormType(array $config, ContainerBuilder $container)
-    {
-        $typeDef = new Definition(DateType::class);
-        $typeDef
-            ->setArguments([$config['widget'], $config['format']])
-            ->addTag('form.type', ['alias' => 'jd_date']);
-        $container->setDefinition('jd_form.form_type.date', $typeDef);
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    private function loadDateBetweenFormType(array $config, ContainerBuilder $container)
-    {
-        $typeDef = new Definition(DateBetweenType::class);
-        $typeDef
-            ->setArguments([$config['from'], $config['to']])
-            ->addTag('form.type', ['alias' => 'date_between']);
-        $container->setDefinition('jd_form.form_type.date_between', $typeDef);
     }
 }
