@@ -1,0 +1,50 @@
+sudo: false
+
+language: php
+
+php:
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+env:
+  - SYMFONY_VERSION="2.3.*"
+  - SYMFONY_VERSION="2.6.*"
+  - SYMFONY_VERSION="2.7.*"
+  - SYMFONY_VERSION="2.8.*@dev"
+  - SYMFONY_VERSION="3.0.x-dev as 2.8"
+
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
+    - env: SYMFONY_VERSION="2.8.*@dev"
+    - env: SYMFONY_VERSION="3.0.x-dev as 2.8"
+  fast_finish: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - composer selfupdate
+  - composer config github-oauth.github.com $GITHUB_OAUTH_TOKEN
+  # Strategy: don't use the require-dev
+  - composer require --no-update "phpunit/phpunit:^4.7.0"
+  - composer require --no-update "satooshi/php-coveralls:dev-master"
+  # Update dependency according to the SYMFONY_VERSION env
+  - composer require --no-update "symfony/config:${SYMFONY_VERSION}"
+  - composer require --no-update "symfony/dependency-injection:${SYMFONY_VERSION}"
+  - composer require --no-update "symfony/http-kernel:${SYMFONY_VERSION}"
+  # For dev branches, need to specify the package dependencies
+  - composer require --no-update "symfony/debug:${SYMFONY_VERSION}"
+  - composer require --no-update "symfony/event-dispatcher:${SYMFONY_VERSION}"
+  - composer require --no-update "symfony/filesystem:${SYMFONY_VERSION}"
+  - composer require --no-update "symfony/http-foundation:${SYMFONY_VERSION}"
+
+install: composer install --no-progress --no-interaction --prefer-dist --no-dev
+
+script: phpunit
+
+after_script: php vendor/bin/coveralls -v

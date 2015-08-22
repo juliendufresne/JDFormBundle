@@ -1,0 +1,28 @@
+{
+    "name": "juliendufresne/form-bundle",
+    "type": "symfony-bundle",
+    "description": "Customize form for your Symfony2 project",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {"JD\\FormBundle\\": ""}
+    },
+    "authors": [
+        {
+            "name": "Julien Dufresne"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "symfony/http-kernel": "2.*",
+        "symfony/config": "2.*",
+        "symfony/dependency-injection": "2.*",
+        "symfony/form": "2.*"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "^1.8.1",
+        "phpmd/phpmd": "^2.2.3",
+        "phpunit/phpunit": "^4.7.0",
+        "phploc/phploc": "^2.1.3"
+    }
+}

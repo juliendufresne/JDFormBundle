@@ -1,0 +1,4 @@
+services:
+    jd_form.form_type.array:
+        class: JD\FormBundle\Form\Type\ArrayType
+        abstract: true
