@@ -17,7 +17,8 @@
         "symfony/http-kernel": "2.*",
         "symfony/config": "2.*",
         "symfony/dependency-injection": "2.*",
-        "symfony/form": "2.*"
+        "symfony/form": "2.*",
+        "doctrine/common": "2.*"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "^1.8.1",
