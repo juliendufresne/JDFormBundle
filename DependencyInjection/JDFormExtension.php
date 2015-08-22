@@ -15,7 +15,6 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 final class JDFormExtension extends ConfigurableExtension
 {
-    private static $formTypes = [];
     /**
      * Configures the passed container according to the merged configuration.
      *
@@ -54,7 +53,7 @@ final class JDFormExtension extends ConfigurableExtension
     /**
      * @param array $config
      *
-     * @return array
+     * @return string[]
      */
     private function getLoaders(array $config)
     {
