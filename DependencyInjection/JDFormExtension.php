@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 final class JDFormExtension extends ConfigurableExtension
 {
+    private static $formTypes = [];
     /**
      * Configures the passed container according to the merged configuration.
      *
@@ -43,7 +44,21 @@ final class JDFormExtension extends ConfigurableExtension
             $this->loadArrayFormType($container, $config['array']);
         }
 
-        $callIfEnabled = [
+        foreach ($this->getLoaders($config) as $configName => $options) {
+            if (true === $config[$configName]['enabled']) {
+                $this->loadFormType($container, $options['arguments'], $options['alias']);
+            }
+        }
+    }
+
+    /**
+     * @param array $config
+     *
+     * @return array
+     */
+    private function getLoaders(array $config)
+    {
+        return [
             'date' => [
                 'arguments' => [
                     $config['date']['widget'],
@@ -59,12 +74,6 @@ final class JDFormExtension extends ConfigurableExtension
                 'alias' => 'date_between',
             ],
         ];
-
-        foreach ($callIfEnabled as $configName => $options) {
-            if (true === $config[$configName]['enabled']) {
-                $this->loadFormType($container, $options['arguments'], $options['alias']);
-            }
-        }
     }
 
     private function loadFormType(ContainerBuilder $container, $arguments, $tagAlias)

@@ -55,9 +55,9 @@ class AppKernel extends Kernel
 [2]: https://insight.sensiolabs.com/projects/194bd583-92a2-499a-add9-c6b3717fc4d2
 
 [100]: https://github.com/juliendufresne/form-bundle
-[110]: https://travis-ci.org/juliendufresne/form-bundle.svg?branch=master
-[111]: https://travis-ci.org/juliendufresne/form-bundle
-[120]: https://coveralls.io/repos/juliendufresne/form-bundle/badge.svg?service=github&branch=master
-[121]: https://coveralls.io/github/juliendufresne/form-bundle?branch=master 
-[130]: https://scrutinizer-ci.com/g/juliendufresne/form-bundle/badges/quality-score.png?b=master
-[131]: https://scrutinizer-ci.com/g/juliendufresne/form-bundle/?branch=master
+[110]: https://travis-ci.org/juliendufresne/JDFormBundle.svg?branch=master
+[111]: https://travis-ci.org/juliendufresne/JDFormBundle
+[120]: https://coveralls.io/repos/juliendufresne/JDFormBundle/badge.svg?service=github&branch=master
+[121]: https://coveralls.io/github/juliendufresne/JDFormBundle?branch=master 
+[130]: https://scrutinizer-ci.com/g/juliendufresne/JDFormBundle/badges/quality-score.png?b=master
+[131]: https://scrutinizer-ci.com/g/juliendufresne/JDFormBundle/?branch=master
