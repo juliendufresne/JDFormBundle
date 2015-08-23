@@ -3,6 +3,7 @@
 namespace JD\FormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -39,6 +40,12 @@ final class DateType extends AbstractType
         $resolver->setDefaults(
             [
                 'format' => $this->format,
+                'invalid_message' => 'This value should be in format {{ format }}',
+                'invalid_message_parameters' => function (Options $options) {
+                    return [
+                        '{{ format }}' => $options['format'],
+                    ];
+                },
                 'widget' => $this->widget,
             ]
         );
