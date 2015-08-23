@@ -2,3 +2,8 @@ services:
     jd_form.form_type.array:
         class: JD\FormBundle\Form\Type\ArrayType
         abstract: true
+
+    jd_form.form_type.entity_hidden:
+        class: JD\FormBundle\Form\Type\EntityHiddenType
+        tags:
+            - { name: form.type, alias: entity_hidden }
